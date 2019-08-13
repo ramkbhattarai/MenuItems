@@ -14,7 +14,7 @@ Data and APIS
   
 WireFrame
   This visualization consists of a single screen a) containing a primary data list, b) interactive graph, c) a panel to refine data by year/price d) and links to the information modal, Github and LinkedIn(e). Footer(f) includes copywright.
-
+<img width="1029" alt="Screen Shot 2019-08-13 at 6 14 15 AM" src="https://user-images.githubusercontent.com/46845773/62936685-752be380-bd98-11e9-9b48-21457acc294a.png">
 
 Architecture and Technologies
   MenuItems is built with:
