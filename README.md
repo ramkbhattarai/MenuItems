@@ -5,9 +5,9 @@ A mix of simple bibliographic description of the menus (created by The New York 
 
 Functionality and MVP
 Users are able to:
-[] See a broad overview of the menus by category
-[] See menus by year
-[] See dishes by price
+* See a broad overview of the menus by category
+* See menus by year
+* See dishes by price
 
 Data and APIS
   Data is freely available through API and direct download(csv) from http://menus.nypl.org/data. This visualization uses locally stored data as .csv.
