@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+        
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Project</title>
+</head>
+<body>
+    <div class="main-container">
+        <h2 class="header">MenuItems Visualization</h2>
+        <div class="left-right-container">
+            <div class="left-container">
+                <div class='menu-items-container'>
+                    <h3 class="title1">Menu Items</h3>
+                </div>
+                <div class="menu-item-lists">
+                    <h4 class="title2">Menu Item lists</h4>
+                    <ul class="lists-of-cuisines">
+                        <li><button id="typical">Typical Nepali Cuisine</button></li>
+                        <li><button id="regular">Regular Nepali Cuisine</button></li>
+                        <li><button id="special">Special Nepali Cuisine</button></li>
+                        <li><button id="newari">Newari Cuisine</button></li>
+                    </ul>
+                </div>
+                <div class="barchart_of_dishes">
+                    <h3 class="barchart">Barchart</h3>
+                    <svg class="bar-chart"></svg>
+                </div>
+            </div>
+            <div class="right-container">
+                <h3 class="content-of-visual-display">Visual Display</h3>
+                <div class="visual-display">
+                    <svg class="pie_chart"></svg>
+                </div>
+            </div>
+            
+        </div>
+        <div class="footer">
+            <h4>Footer</h4>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>
