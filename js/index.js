@@ -49,7 +49,14 @@ var data4 = [
 ];
 
 function drawPieChart(data){
-
+    // let per;
+    // let sum = 0;
+    // data.forEach(d => {
+    //     sum += d.percentage;
+    // })
+    //debugger
+    // per = (data.percentage / sum);
+    // console.log(per)
     var svg = d3.select('.pie_chart')
         .attr("width", svgWidth)
         .attr("height", svgHeight);
@@ -58,10 +65,10 @@ function drawPieChart(data){
     var g = svg.append("g")
         .attr("transform", "translate(" + radius + "," + radius + ")");
     
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
+    var color = d3.scaleOrdinal(d3.schemePaired);
     
     var pie = d3.pie().value(function (d) {
-        return d.percentage;
+        return d.menus_appeared;
     });
     
     var path = d3.arc()
@@ -75,7 +82,7 @@ function drawPieChart(data){
     
     arc.append("path")
         .attr("d", path)
-        .attr("fill", function (d) { return color(d.data.percentage); });
+        .attr("fill", function (d) { return color(d.data.menus_appeared); });
     
     var label = d3.arc()
         .outerRadius(radius)
@@ -86,82 +93,241 @@ function drawPieChart(data){
             return "translate(" + label.centroid(d) + ")";
         })
         .attr("text-anchor", "middle")
-        .text(function (d) { return d.data.menus + ":" + d.data.percentage + "%"; });
+        .text(function (d) { return d.data.name; });
 }
 
-function drawChart(dataset) {
-    let svg = d3.select('.bar-chart')
-        .attr("width", svgWidth)
-        .attr("height", svgHeight);
-   
-    if (barChart !== undefined) {barChart.remove()}
-    barChart = svg.selectAll("rect")
-        
-        .data(dataset) 
-        .enter()
-        .append("rect")
-        .attr("y", function (d) {
-            return svgHeight - d
+ function dish_testing1() {
+
+    let dish_data = []
+    d3.csv("../dist/dishes_data.csv").then((data) => {
+        dish_data = data.filter(datum => {
+    
+            return (parseInt(datum.first_appeared, 10) < 1900);
+    
         })
-        .attr("height", function (d) {
-            return d;
+        dish_data.slice(0, 10).forEach(d => {
+            d.menus_appeared = +d.menus_appeared;
         })
-        .attr("width", barWidth - barPadding)
-        .attr("transform", function (d, i) {
-            let translate = [barWidth * i, 0];
-            return "translate(" + translate + ")";
+        drawPieChart(dish_data.slice(0, 6))
+        //console.log(dish_data.slice(0, 10))
+    })
+}
+
+function dish_testing2() {
+
+    let dish_data = []
+    d3.csv("../dist/dishes_data.csv").then((data) => {
+        dish_data = data.filter(datum => {
+
+            return (parseInt(datum.first_appeared, 10) > 1900 && parseInt(datum.first_appeared, 10) < 1950);
+
         })
-        .attr('fill','black')
-        
-      ;
-    // debugger
+        dish_data.slice(0, 10).forEach(d => {
+            d.menus_appeared = +d.menus_appeared;
+        })
+        drawPieChart(dish_data.slice(0, 6))
+        //console.log(dish_data.slice(0, 10))
+    })
+}
+
+function dish_testing3() {
+
+    let dish_data = []
+    d3.csv("../dist/dishes_data.csv").then((data) => {
+        dish_data = data.filter(datum => {
+
+            return (parseInt(datum.first_appeared, 10) > 1950 && parseInt(datum.first_appeared, 10) < 2000);
+
+        })
+        dish_data.slice(0, 10).forEach(d => {
+            d.menus_appeared = +d.menus_appeared;
+        })
+        drawPieChart(dish_data.slice(0, 6))
+        //console.log(dish_data.slice(0, 10))
+    })
+}
+
+function dish_testing4() {
+
+    let dish_data = []
+    d3.csv("../dist/dishes_data.csv").then((data) => {
+        dish_data = data.filter(datum => {
+
+            return (parseInt(datum.first_appeared, 10) > 2000);
+
+        })
+        dish_data.slice(0, 10).forEach(d => {
+            d.menus_appeared = +d.menus_appeared;
+        })
+        drawPieChart(dish_data.slice(0, 6))
+        //console.log(dish_data.slice(0, 10))
+    })
 }
 
 
     document.addEventListener("DOMContentLoaded", () => {
-          drawChart(dataset1);
-          drawPieChart(data1)
+          testing1();
+          dish_testing1();
+        //drawPieChart(data1)
        
         const typical = document.getElementById("typical");
         typical.onclick = () => {
-            drawChart(dataset1)
-            drawPieChart(data1)
+            testing1();
+            dish_testing1();
+           // drawPieChart(data1)
         }
         const regular = document.getElementById("regular");
         regular.onclick = () => {
            
-            drawChart(dataset2)
-            drawPieChart(data2)
+            testing2();
+            dish_testing2();
+           // drawPieChart(data2);
         }
         const special = document.getElementById("special");
         special.onclick = () => {
-            drawChart(dataset3)
-            drawPieChart(data3)
+            testing3();
+            dish_testing3();
+           // drawPieChart(data3)
         }
         const newari = document.getElementById("newari");
         newari.onclick = () => {
-            drawChart(dataset4)
-            drawPieChart(data4)
+            testing4();
+            dish_testing4();
+           // drawPieChart(data4)
         }
     })
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     drawChart(dataset1);
-//     const typical = document.getElementById("typical");
-//     typical.onclick = () => {
-//         drawChart(dataset1)
-//     }
     
-//     const regular = document.getElementById("regular");
-//     regular.onclick = () => {
-//         drawChart(dataset2)
-//     }
-//     const special = document.getElementById("special");
-//     special.onclick = () => {
-//         drawChart(dataset3)
-//     }
-//     const newari = document.getElementById("newari");
-//     newari.onclick = () => {
-//         drawChart(dataset4)
-//     }
+let chart;
+
+const render = data => {
+    
+    // d3.select(".bar-chart").remove();
+
+    const width = 300;
+    const height = 500;
+    const margin = {top: 10, right: 10, bottom: 10, left: 150};
+    //const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+    // 
+    const xScale = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.dish_count)])
+        .range([0, width]);
+
+        const xAxis = d3.axisBottom(xScale);
+    const yScale = d3.scaleBand()
+        .domain(data.map(d => d.location))
+        .range([0, innerHeight])
+        .padding(0.1);
+        //console.log(yScale.domain())
+     const yAxis = d3.axisLeft(yScale);
+    
+    let svg = d3.select(".bar-chart");
+    
+    
+
+    if (chart){
+        svg.select('g').remove();
+    }
+
+    const g = svg.append("g")
+    .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+    g.append('g').call(yAxis);
+    g.append("g").call(xAxis)
+        .attr('transform', `translate(0, ${innerHeight})`);
+
+    chart = true;
+     g.selectAll("rect").data(data)
+        .enter()
+        .append("rect")
+            .attr("y", d => yScale(d.location))
+            .attr("width", d => xScale(d.dish_count))
+            .attr("height", yScale.bandwidth());
+        
+
+}
+   function testing1(){
+
+       let menu_data = []
+         d3.csv("../dist/menu_data.csv").then((data)  =>{
+             menu_data =  data.filter(datum => {
+                  
+                return (parseInt(datum.date, 10) < 1900 && datum.place === "NEW YORK");
+       
+            })
+            menu_data.slice(0, 10).forEach(d => {
+                d.dish_count = +d.dish_count;
+            })
+
+             render(menu_data.slice(0, 10))
+            // console.log(menu_data.slice(0,10)[0].dish_count)
+       })
+   }
+
+function testing2() {
+
+    let menu_data = []
+    d3.csv("../dist/menu_data.csv").then((data) => {
+        menu_data = data.filter(datum => {
+
+            return (parseInt(datum.date, 10) > 1900 && parseInt(datum.date, 10) < 1950  && datum.place === "NEW YORK");
+
+        })
+        menu_data.slice(0, 10).forEach(d => {
+            d.dish_count = +d.dish_count;
+        })
+        render(menu_data.slice(0, 10))
+        //console.log(menu_data.slice(0,10))
+    })
+}
+
+function testing3() {
+
+    let menu_data = []
+    d3.csv("../dist/menu_data.csv").then((data) => {
+        menu_data = data.filter(datum => {
+
+            return (parseInt(datum.date, 10) > 1950 && parseInt(datum.date, 10) < 1980 ); // not in new york
+
+        })
+        menu_data.slice(0, 10).forEach(d => {
+            d.dish_count = +d.dish_count;
+        })
+        render(menu_data.slice(0, 10))
+        // console.log(menu_data.slice(0,10))
+    })
+}
+
+function testing4() {
+
+    let menu_data = []
+    d3.csv("../dist/menu_data.csv").then((data) => {
+        menu_data = data.filter(datum => {
+
+            return (parseInt(datum.date, 10) > 2000 );// not in new york
+
+        })
+        menu_data.slice(0, 10).forEach(d => {
+            d.dish_count = +d.dish_count;
+        })
+        render(menu_data.slice(0, 10))
+        // console.log(menu_data.slice(0,10))
+    })
+}
+
+// let dish_data = []
+// d3.csv("../dist/dishes_data.csv").then((data) => {
+//     dish_data = data.filter(datum => {
+        
+//         return parseInt(datum.highest_price, 10) > 20
+
+//     })
+
+//     drawPieChart(dish_data.slice(0, 6))
+//     console.log(dish_data.slice(0,2))
 // })
+
+
+
+

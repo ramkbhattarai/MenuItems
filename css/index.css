@@ -1,9 +1,9 @@
 .main-container{
-    /* height: -webkit-fill-available; */
+    height: -webkit-fill-available;
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 0 auto;
     text-align: center;
     color: green;
@@ -14,16 +14,16 @@
     background-color: blueviolet;
 }
 .left-container{
-    /* display: flex; */
+  
     height: -webkit-fill-available;
-    width: 50%;
+    width: 60%;
     background-color: blue;
 }
 
 .right-container{
     float: right;
     height: -webkit-fill-available;
-    width: 50%;
+    width: 40%;
     background-color:whitesmoke;
 }
 .menu-items-container{
@@ -38,8 +38,15 @@
 }
 .barchart_of_dishes{
     background-color: white;
-    height: 582px;
+    height: 100%;
 }
 .pie_chart{
     padding: 35%;
+}
+.bar-chart{
+    height: -webkit-fill-available;
+    width:100%;
+}
+rect{
+    fill:steelblue;
 }
