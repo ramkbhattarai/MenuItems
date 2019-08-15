@@ -93,7 +93,7 @@ function drawPieChart(data){
  function dish_testing1() {
 
     let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/dishes_data.csv").then((data) => {
         dish_data = data.filter(datum => {
     
             return (parseInt(datum.first_appeared, 10) < 1900);
@@ -110,7 +110,7 @@ function drawPieChart(data){
 function dish_testing2() {
 
     let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/dishes_data.csv").then((data) => {
         dish_data = data.filter(datum => {
 
             return (parseInt(datum.first_appeared, 10) > 1900 && parseInt(datum.first_appeared, 10) < 1950);
@@ -127,7 +127,7 @@ function dish_testing2() {
 function dish_testing3() {
 
     let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/dishes_data.csv").then((data) => {
         dish_data = data.filter(datum => {
 
             return (parseInt(datum.first_appeared, 10) > 1950 && parseInt(datum.first_appeared, 10) < 2000);
@@ -144,7 +144,7 @@ function dish_testing3() {
 function dish_testing4() {
 
     let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/dishes_data.csv").then((data) => {
         dish_data = data.filter(datum => {
 
             return (parseInt(datum.first_appeared, 10) > 2000);
@@ -244,7 +244,7 @@ const render = data => {
    function testing1(){
 
        let menu_data = []
-         d3.csv("../dist/menu_data.csv").then((data)  =>{
+         d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/menu_data.csv").then((data)  =>{
              menu_data =  data.filter(datum => {
                   
                 return (parseInt(datum.date, 10) < 1900 && datum.place === "NEW YORK");
@@ -262,7 +262,7 @@ const render = data => {
 function testing2() {
 
     let menu_data = []
-    d3.csv("../dist/menu_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/menu_data.csv").then((data) => {
         menu_data = data.filter(datum => {
 
             return (parseInt(datum.date, 10) > 1900 && parseInt(datum.date, 10) < 1950  && datum.place === "NEW YORK");
@@ -279,7 +279,7 @@ function testing2() {
 function testing3() {
 
     let menu_data = []
-    d3.csv("../dist/menu_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/menu_data.csv").then((data) => {
         menu_data = data.filter(datum => {
 
             return (parseInt(datum.date, 10) > 1950 && parseInt(datum.date, 10) < 1980 ); // not in new york
@@ -296,7 +296,7 @@ function testing3() {
 function testing4() {
 
     let menu_data = []
-    d3.csv("../dist/menu_data.csv").then((data) => {
+    d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/dishes_data.csv").then((data) => {
         menu_data = data.filter(datum => {
 
             return (parseInt(datum.date, 10) > 2000 );// not in new york
@@ -311,7 +311,7 @@ function testing4() {
 }
 
 // let dish_data = []
-// d3.csv("../dist/dishes_data.csv").then((data) => {
+// d3.csv("https://github.com/ramkbhattarai/MenuItems/blob/master/dist/dishes_data.csv").then((data) => {
 //     dish_data = data.filter(datum => {
         
 //         return parseInt(datum.highest_price, 10) > 20
