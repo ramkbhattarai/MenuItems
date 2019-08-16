@@ -41,7 +41,7 @@
     height: 100%;
 }
 .pie_chart{
-    padding: 35%;
+    padding: 25%;
     width: 100%;
 }
 .bar-chart{
@@ -51,3 +51,4 @@
 rect{
     fill:steelblue;
 }
+
