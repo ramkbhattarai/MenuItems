@@ -92,70 +92,62 @@ function drawPieChart(data){
 
  function dish_testing1() {
 
-    let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
-        dish_data = data.filter(datum => {
+    let dish_data1 = []
+    
+     dish_data1 = dish_data.filter(datum => {
     
             return (parseInt(datum.first_appeared, 10) < 1900);
     
         })
-        dish_data.slice(0, 10).forEach(d => {
-            d.menus_appeared = +d.menus_appeared;
-        })
-        drawPieChart(dish_data.slice(0, 10))
+       
+        drawPieChart(dish_data1.slice(0, 10))
         //console.log(dish_data.slice(0, 10))
-    })
+    
 }
 
 function dish_testing2() {
 
-    let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
-        dish_data = data.filter(datum => {
+    let dish_data2 = []
+   
+    dish_data2 = dish_data.filter(datum => {
 
             return (parseInt(datum.first_appeared, 10) > 1900 && parseInt(datum.first_appeared, 10) < 1950);
 
         })
-        dish_data.slice(0, 10).forEach(d => {
-            d.menus_appeared = +d.menus_appeared;
-        })
-        drawPieChart(dish_data.slice(0, 6))
+       
+        drawPieChart(dish_data2.slice(0, 6))
         //console.log(dish_data.slice(0, 10))
-    })
+   
 }
 
 function dish_testing3() {
 
-    let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
-        dish_data = data.filter(datum => {
+    let dish_data3 = []
+    
+    dish_data3 = dish_data.filter(datum => {
 
             return (parseInt(datum.first_appeared, 10) > 1950 && parseInt(datum.first_appeared, 10) < 2000);
 
         })
-        dish_data.slice(0, 10).forEach(d => {
-            d.menus_appeared = +d.menus_appeared;
-        })
-        drawPieChart(dish_data.slice(0, 6))
+        
+        drawPieChart(dish_data3.slice(0, 6))
         //console.log(dish_data.slice(0, 10))
-    })
+    
 }
 
 function dish_testing4() {
 
-    let dish_data = []
-    d3.csv("../dist/dishes_data.csv").then((data) => {
-        dish_data = data.filter(datum => {
+    let dish_data4 = []
+   
+        dish_data4 = dish_data.filter(datum => {
 
             return (parseInt(datum.first_appeared, 10) > 2000);
 
         })
-        dish_data.slice(0, 10).forEach(d => {
-            d.menus_appeared = +d.menus_appeared;
-        })
-        drawPieChart(dish_data.slice(0, 6))
+        
+        drawPieChart(dish_data4.slice(0, 6))
         //console.log(dish_data.slice(0, 10))
-    })
+   
 }
 
 
@@ -253,71 +245,63 @@ const render = data => {
 }
    function testing1(){
 
-       let menu_data = []
-         d3.csv("../dist/menu_data.csv").then((data)  =>{
-             menu_data =  data.filter(datum => {
+       let menu_data1 = []
+         
+       menu_data1 = menu_data.filter(datum => {
                   
                 return (parseInt(datum.date, 10) < 1900 && datum.place === "NEW YORK");
        
             })
-            menu_data.slice(0, 10).forEach(d => {
-                d.dish_count = +d.dish_count;
-            })
+           
 
-             render(menu_data.slice(0, 10))
+             render(menu_data1.slice(0, 10))
             // console.log(menu_data.slice(0,10)[0].dish_count)
-       })
+      
    }
 
 function testing2() {
 
-    let menu_data = []
-    d3.csv("../dist/menu_data.csv").then((data) => {
-        menu_data = data.filter(datum => {
+    let menu_data2 = []
+   
+    menu_data2 = menu_data.filter(datum => {
 
             return (parseInt(datum.date, 10) > 1900 && parseInt(datum.date, 10) < 1950  && datum.place === "NEW YORK");
 
         })
-        menu_data.slice(0, 10).forEach(d => {
-            d.dish_count = +d.dish_count;
-        })
-        render(menu_data.slice(0, 10))
+       
+        render(menu_data2.slice(0, 10))
         //console.log(menu_data.slice(0,10))
-    })
+   
 }
 
 function testing3() {
 
-    let menu_data = []
-    d3.csv("../dist/menu_data.csv").then((data) => {
-        menu_data = data.filter(datum => {
+    let menu_data3 = []
+    
+        menu_data3 = menu_data.filter(datum => {
 
             return (parseInt(datum.date, 10) > 1950 && parseInt(datum.date, 10) < 1980 ); // not in new york
 
         })
-        menu_data.slice(0, 10).forEach(d => {
-            d.dish_count = +d.dish_count;
-        })
-        render(menu_data.slice(0, 10))
+       
+        render(menu_data3.slice(0, 10))
         // console.log(menu_data.slice(0,10))
-    })
+   
 }
 
 function testing4() {
 
-    let menu_data = []
-    d3.csv("../dist/menu_data.csv").then((data) => {
-        menu_data = data.filter(datum => {
+    let menu_data4 = []
+    
+    menu_data4 = menu_data.filter(datum => {
 
             return (parseInt(datum.date, 10) > 2000 );// not in new york
 
         })
-        menu_data.slice(0, 10).forEach(d => {
-            d.dish_count = +d.dish_count;
-        })
-        render(menu_data.slice(0, 10))
+        
+        render(menu_data4.slice(0, 10))
         // console.log(menu_data.slice(0,10))
-    })
+   
 }
 
 
