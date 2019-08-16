@@ -67,7 +67,7 @@ function drawPieChart(data){
     
     var path = d3.arc()
         .outerRadius(radius)
-        .innerRadius(10);
+        .innerRadius(0);
     
     var arc = g.selectAll("arc")
         .data(pie(data))
