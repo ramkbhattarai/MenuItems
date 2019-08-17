@@ -47,47 +47,123 @@ var data4 = [
     { "menus": "regular", "percentage": 23.06 },
     { "menus": "newari", "percentage": 20.00 }
 ];
-
+let pieChart;
+let g;
 function drawPieChart(data){
-    
+   
     var svg = d3.select('.pie_chart')
         .attr("width", svgWidth)
         .attr("height", svgHeight);
-    
-    //Creating group element to hold pie chart    
-    var g = svg.append("g")
-        .attr("transform", "translate(" + radius + "," + radius + ")");
-    
-    var color = d3.scaleOrdinal(d3.schemePaired);
-    
+
+
+         
+    if (pieChart) {
+        
+        svg.append('g').remove();
+       
+    }
+        
+         var g = svg.append('g')
+            .attr("transform", "translate(" + svgWidth / 2 + "," + svgHeight/2 + ")");
+
+     
+        
+    var color = d3.scaleOrdinal(["#98abc5",
+        "#8a89a6",
+        "#7b6888",
+        "#6b486b",
+        "#a05d56",
+        "#d0743c",
+        "#ff8c00",
+        "#e34d01",
+        "#ccff05",
+        "#3e7eca",
+        "#aa0092",
+        "#b32e4f"]);
+
     var pie = d3.pie()
-        .sort(null).value(function (d) {
-        return d.menus_appeared;
-    });
-    
+        .sort(null)
+        .value(function (d) { return d.menus_appeared; });
+
+    pieChart = true;
     var path = d3.arc()
-        .outerRadius(radius)
+        .outerRadius(radius - 10)
         .innerRadius(0);
-    
-    var arc = g.selectAll("arc")
+
+    var outerArc = d3.arc()
+        .innerRadius(radius * 0.9)
+        .outerRadius(radius * 0.9);
+
+
+    var label = d3.arc()
+        .outerRadius(radius - 40)
+        .innerRadius(radius - 40);
+
+    var arc = g.selectAll(".arc")
         .data(pie(data))
-        .enter()
-        .append("g");
+        .enter().append("g")
+        .attr("class", "arc");
+
+
     
     arc.append("path")
         .attr("d", path)
-        .attr("fill", function (d) { return color(d.data.menus_appeared); });
-    
-    var label = d3.arc()
-        .outerRadius(radius)
-        .innerRadius(0);
-    
+        .attr("fill", function (d) { return color(d.data.name); });
+
+
     arc.append("text")
-        .attr("transform", function (d) {
-            return "translate(" + label.centroid(d) + ")";
+
+        .attr("transform", function (d, i) {
+            var pos = outerArc.centroid(d);
+            pos[0] = radius * (midAngle(d) < Math.PI ? 1.1 : -1.1);
+
+
+            var percent = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
+            if (percent < 3) {
+                
+                pos[1] += i * 15
+            }
+            return "translate(" + pos + ")";
         })
-        .attr("text-anchor", "middle")
-        .text(function (d) { return d.data.name; });
+        .text(function (d) { return d.data.name; })
+        .attr("fill", function (d, i) { return color(i); })
+        .attr("text-anchor", 'left')
+        .attr("dx", function (d) {
+            var ac = midAngle(d) < Math.PI ? 0 : -50
+            return ac
+        })
+        .attr("dy", 5)
+
+
+    function midAngle(d) {
+        return d.startAngle + (d.endAngle - d.startAngle) / 2;
+    }
+
+    var polyline = g.selectAll("polyline")
+        .data(pie(data), function (d) {
+            return d.data.name;
+        })
+        .enter()
+        .append("polyline")
+        .attr("points", function (d, i) {
+            var pos = outerArc.centroid(d);
+            pos[0] = radius * 0.95 * (midAngle(d) < Math.PI ? 1 : -1);
+            var outer = outerArc.centroid(d)
+            var percent = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
+            if (percent < 3) {
+                outer[1]
+                pos[1] += i * 15
+            }
+            
+            return [label.centroid(d), [outer[0], pos[1]], pos];
+        })
+        .style("fill", "none")
+        
+        .attr("stroke", function (d, i) { return color(i); })
+        .style("stroke-width", "1px");
+
+    
+
 }
 
  function dish_testing1() {
@@ -192,7 +268,7 @@ const render = data => {
 
     const width = 300;
     const height = 500;
-    const margin = {top: 10, right: 20, bottom: 10, left: 150};
+    const margin = {top: 20, right: 20, bottom: 10, left: 150};
    // const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
     // 

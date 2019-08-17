@@ -16,14 +16,14 @@
 .left-container{
   
     height: -webkit-fill-available;
-    width: 60%;
+    width: 40%;
     background-color: blue;
 }
 
 .right-container{
     float: right;
     height: -webkit-fill-available;
-    width: 40%;
+    width: 60%;
     background-color:whitesmoke;
 }
 .menu-items-container{
