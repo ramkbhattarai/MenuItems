@@ -1,68 +1,16 @@
-d3.select('.header')
-.text('MenuItems Visualization')
-.style('color', "red");
-
-d3.select('.title1')
-.text('Menu Items')
-.style('color', 'blue');
-
-d3.select('.title2')
-    .text('Menu Item Lists')
-    .style('color', 'white');
-
-
-let dataset1 = [80, 100, 56, 120, 180, 30, 140, 120, 160, 200, 300, 500];
-let dataset2 = [70, 120, 156, 20, 180, 130, 240, 120, 60, 220, 40, 50];
-let dataset3 = [90, 110, 256, 20, 180, 230, 340, 120, 100, 20, 30, 90];
-let dataset4 = [60, 160, 356, 210, 180, 430, 40, 120, 170, 210, 90, 200];
-
 
 let svgWidth = 500, svgHeight = 300, barPadding = 5, radius = Math.min(svgWidth, svgHeight) / 2 ;
-let barWidth = (svgWidth / dataset1.length);
-let barChart;
 
-var data1 = [
-    { "menus": "typical", "percentage": 30.11 },
-    { "menus": "special", "percentage": 26.69 },
-    { "menus": "regular", "percentage": 13.06 },
-    {"menus": "newari", "percentage": 20.00}
-];
-
-var data2 = [
-    { "menus": "typical", "percentage": 20.11 },
-    { "menus": "special", "percentage": 16.69 },
-    { "menus": "regular", "percentage": 43.06 },
-    { "menus": "newari", "percentage": 20.00 }
-];
-
-var data3 = [
-    { "menus": "typical", "percentage": 40.11 },
-    { "menus": "special", "percentage": 16.69 },
-    { "menus": "regular", "percentage": 23.06 },
-    { "menus": "newari", "percentage": 10.00 }
-];
-var data4 = [
-    { "menus": "typical", "percentage": 30.11 },
-    { "menus": "special", "percentage": 16.69 },
-    { "menus": "regular", "percentage": 23.06 },
-    { "menus": "newari", "percentage": 20.00 }
-];
 let pieChart;
 
 function drawPieChart(data){
-        
-
    
-
-
     var svg = d3.select('.pie_chart')
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
     if (pieChart) {svg.select('g').remove() }
-         
-   
-        
+       
          var g = svg.append('g')
             .attr("transform", "translate(" + svgWidth / 2 + "," + svgHeight/2 + ")");
 
@@ -76,7 +24,7 @@ function drawPieChart(data){
         "#d0743c",
         "#ff8c00",
         "#e34d01",
-        "#ccff05",
+        "black",
         "#3e7eca",
         "#aa0092",
         "#b32e4f"]);
