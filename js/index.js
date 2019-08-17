@@ -48,25 +48,25 @@ var data4 = [
     { "menus": "newari", "percentage": 20.00 }
 ];
 let pieChart;
-let g;
+
 function drawPieChart(data){
+        
+
    
+
+
     var svg = d3.select('.pie_chart')
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
-
+    if (pieChart) {svg.select('g').remove() }
          
-    if (pieChart) {
-        
-        svg.append('g').remove();
-       
-    }
+   
         
          var g = svg.append('g')
             .attr("transform", "translate(" + svgWidth / 2 + "," + svgHeight/2 + ")");
 
-     
+     pieChart = true;
         
     var color = d3.scaleOrdinal(["#98abc5",
         "#8a89a6",
@@ -85,7 +85,7 @@ function drawPieChart(data){
         .sort(null)
         .value(function (d) { return d.menus_appeared; });
 
-    pieChart = true;
+  
     var path = d3.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
