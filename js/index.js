@@ -109,6 +109,7 @@ function drawPieChart(data){
         
         .attr("stroke", function (d, i) { return color(i); })
         .style("stroke-width", "1px");
+       // .style('padding', 3);
 
     
 
