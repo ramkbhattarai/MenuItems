@@ -87,21 +87,5 @@ rect{
     width: 27px;
 }
 
-/* .fab:hover{
-    box-shadow: 0 0 10px rgba(150, 150, 150, .8);
-} */
 
-/* 
-@media screen and (min-width: 850px){
-  .footer{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-  }
-}
 
-@media screen and (min-width: 1120px){
-    .footer{
-        flex-direction: row;
-    }
-} */
