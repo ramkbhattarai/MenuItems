@@ -69,11 +69,11 @@ function drawPieChart(data){
             var percent = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
             if (percent < 3) {
                 
-                pos[1] += i * 15
+                pos[1] += i * 10
             }
             return "translate(" + pos + ")";
         })
-        .text(function (d) { return d.data.name; })
+        .text(function (d) { return d.data.name.slice(0, 30); })
         .attr("fill", function (d, i) { return color(i); })
         .attr("text-anchor", 'left')
         .attr("dx", function (d) {
@@ -100,7 +100,7 @@ function drawPieChart(data){
             var percent = (d.endAngle - d.startAngle) / (2 * Math.PI) * 100
             if (percent < 3) {
                 outer[1]
-                pos[1] += i * 15
+                pos[1] += i * 10
             }
             
             return [label.centroid(d), [outer[0], pos[1]], pos];
@@ -109,7 +109,7 @@ function drawPieChart(data){
         
         .attr("stroke", function (d, i) { return color(i); })
         .style("stroke-width", "1px");
-       // .style('padding', 3);
+       
 
     
 
