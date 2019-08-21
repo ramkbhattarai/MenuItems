@@ -3,7 +3,7 @@
 <head>
     
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="./dist/dish_data.json"></script>
     <script src="./dist/menu_data.json"></script>
     <link rel="stylesheet" type="text/css" href="./css/index.css">
@@ -13,33 +13,29 @@
     <title>JS Project</title>
 </head>
 <body>
+    <!-- <div id="dashboard"></div> -->
     <div class="main-container">
-        <h2 class="header">Dishes Served in New york in Different Time Frame in Different Hotels</h2>
+        <h2 class="header">Dishes Served in New york in Different Time Frame</h2>
         <div class="left-right-container">
             <div class="left-container">
-                <div class="menu-item-lists">
+                
                     <ul class="lists-of-cuisines">
-                        <li><button id="typical">New York Before 1990</button></li>
-                        <li><button id="regular">New York Between 1990 - 1950</button></li>
+                        <li><button id="typical"> Before 1950</button></li>
+                        <!-- <li><button id="regular">New York Between 1990 - 1950</button></li> -->
                         <li><button id="special">Between 1950 - 2000</button></li>
                         <li><button id="newari">From 2000 - present</button></li>
                     </ul>
-                </div>
-                <div class="barchart_of_dishes">
-                    <h3 class="barchart">Barchart</h3>
-                    <svg class="bar-chart"></svg>
-                </div>
+                
             </div>
             <div class="right-container">
-                <h3 class="content-of-visual-display">Pie Chart</h3>
-                <div class="visual-display">
+                
+                
 
-                    <svg class="pie_chart">
-                        
-                         
-                        
-                    </svg>
+                   <div id="dashboard"></div>
                     
+                <div class="labels">
+                    <div class="menus_appeared">Dishes Name Vs their appearence in menus</div>
+                    <div class="dishes_prices">Dishes served Vs Prices</div>
                 </div>
 
                 <div class="footer">
@@ -52,5 +48,6 @@
        
     </div>
     <script src="./dist/bundle.js"></script>
+    
 </body>
 </html>

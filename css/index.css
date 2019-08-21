@@ -1,10 +1,6 @@
 .main-container{
-    /* height: -webkit-fill-available;
-    width: 100%; */
-    /* display: flex; */
+    
     flex-direction: column;
-    /* overflow: hidden; */
-    /* margin: 0 auto; */
     text-align: center;
     color: green;
     background-color: aquamarine;
@@ -14,65 +10,44 @@
     display: flex;
     border: 1px solid whitesmoke;
         height:70%;
-    /* background-color: blueviolet; */
+   
 }
 .left-container{
    border: 1px solid whitesmoke;
-    /* height: -webkit-fill-available; */
-    width: 40%;
-    background-color: blue;
+    
+    width: 10%;
+    background-color: whitesmoke; 
     height:700px;
 }
 
 .right-container{
     float: right;
-    /* height: -webkit-fill-available; */
-    width: 60%;
+    
+    width: 90%;
     background-color:whitesmoke;
      border: 1px solid whitesmoke;
      height:700px;
      position: relative;
 }
-.menu-items-container{
-        background-color: white;
-    height: 50px;
-}
-.content-of-visual-display{
-    margin: 10%;
-     border: 1px solid whitesmoke;
-         width: -webkit-fill-available;
-         /* padding-left: 3%; */
-    /* background-color: bisque; */
-}
+
 .lists-of-cuisines > li{
     list-style-type: none;
-}
-.barchart_of_dishes{
-    background-color: white;
-    height: 100%;
-}
-.pie_chart{
-    /* padding: 25%; */
-    width: 100%;
-}
-.bar-chart{
-    height: -webkit-fill-available;
-    width:90%;
-}
-rect{
-    fill:steelblue;
+    background-color: aqua;
 }
 
-.visual-display{
-    padding-left: 10%;
-    height: 70%;
+.dashboard{
+    display: flex;
+    width: 100%;
 }
+
+
 .footer{
         display: flex;
     flex-direction: row;
     width: 200px;
     font-size: 30px;
-    /* left: 20px; */
+    margin-top: 5%;
+   margin-left: 90%;
 }
 
 
@@ -88,4 +63,52 @@ rect{
 }
 
 
+body{
+    width:1060px;
+    margin:50px auto;
+}
+path {  stroke: #fff; }
+path:hover {  opacity:0.9; }
+rect:hover {  fill:blue; }
+.axis {  font: 10px sans-serif; }
+.legend tr{    border-bottom:1px solid grey; }
+.legend tr:first-child{    border-top:1px solid grey; }
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {  display: none; }
+.legend{
+    margin-bottom:76px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+.legendFreq, .legendPerc{
+    align:right;
+    width:50px;
+}
+.labels{
+    display: flex;
+    border: 1px solid whitesmoke;
+    width:100%;
+}
+
+.dishes_prices{
+    float: right;
+    margin-left: 30%;
+    color: black;
+}
+.menus_appeared{
+    float: left;
+    margin-left: 10%;
+    color: black;
+}
