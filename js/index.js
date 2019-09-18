@@ -108,9 +108,11 @@ function dashboard(id, fData) {
                 d3.select(id).selectAll("svg").remove();
             }
         // svg for histogram.
+        //hGDim.w + hGDim.l + hGDim.r
+        //hGDim.h + hGDim.t + hGDim.b
         var hGsvg = d3.select(id).append("svg")
-            .attr("width", hGDim.w + hGDim.l + hGDim.r)
-            .attr("height", hGDim.h + hGDim.t + hGDim.b).append("g")
+            .attr("width",500 )
+            .attr("height", 350).append("g")
             .attr("transform", "translate(" + hGDim.l + "," + hGDim.t + ")");
             histogramdata = true;
         // function for x-axis mapping.
