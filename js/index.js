@@ -297,7 +297,7 @@ function dashboard(id, fData) {
 
         // create the third column for each segment.
         tr.append("td").attr("class", 'legendFreq')
-            .text(function (d) { return d3.format(",")(d.freq); });
+            .text(function (d) { return d3.format("$,")(d.freq); });
 
         // create the fourth column for each segment.
         tr.append("td").attr("class", 'legendPerc')
@@ -309,7 +309,7 @@ function dashboard(id, fData) {
             var l = legend.select("tbody").selectAll("tr").data(nD);
 
             // update the frequencies.
-            l.select(".legendFreq").text(function (d) { return d3.format(",")(d.freq); });
+            l.select(".legendFreq").text(function (d) { return d3.format("$,")(d.freq); });
 
             // update the percentage column.
             l.select(".legendPerc").text(function (d) { return getLegend(d, nD); });
