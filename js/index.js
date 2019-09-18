@@ -10,7 +10,7 @@
         })
        
         testing_again(dish_data1.slice(0, 10))
-        //console.log(dish_data.slice(0, 10))
+       
     
 }
 
@@ -25,7 +25,7 @@ function dish_testing2() {
         })
        
     testing_again(dish_data2.slice(0, 6))
-        //console.log(dish_data.slice(0, 10))
+        
    
 }
 
@@ -40,7 +40,7 @@ function dish_testing3() {
         })
         
     testing_again(dish_data3.slice(0, 6))
-        //console.log(dish_data.slice(0, 10))
+       
     
 }
 
@@ -55,40 +55,34 @@ function dish_testing4() {
         })
         
     testing_again(dish_data4.slice(0, 6))
-        //console.log(dish_data.slice(0, 10))
+       
    
 }
 
 
     document.addEventListener("DOMContentLoaded", () => {
-         // testing1();
+        
           dish_testing1();
-        //drawPieChart(data1)
+        
         
         const typical = document.getElementById("typical");
         typical.onclick = () => {
-           // testing1();
-            dish_testing1();
-           // drawPieChart(data1)
-        }
-        // const regular = document.getElementById("regular");
-        // regular.onclick = () => {
            
-        //    // testing2();
-        //     dish_testing2();
-        //    // drawPieChart(data2);
-        // }
+            dish_testing1();
+           
+        }
+       
         const special = document.getElementById("special");
         special.onclick = () => {
-            //testing3();
+           
             dish_testing3();
-           // drawPieChart(data3)
+           
         }
         const newari = document.getElementById("newari");
         newari.onclick = () => {
-           // testing4();
+           
             dish_testing4();
-           // drawPieChart(data4)
+          
         }
     })
 // testings
@@ -101,7 +95,7 @@ function dashboard(id, fData) {
     var barColor = 'steelblue';
     function segColor(c) { return { low: "#807dba", mid: "#e08214", high: "#41ab5d" }[c]; }
 
-    // compute total for each Name.
+    // computing total for each dish Name with low, high and mid price.
     fData.forEach(function (d) { d.total = d.freq.low + d.freq.mid + d.freq.high; });
 
     // function to handle histogram.
@@ -113,23 +107,24 @@ function dashboard(id, fData) {
             if(histogramdata){
                 d3.select(id).selectAll("svg").remove();
             }
-        //create svg for histogram.
+        // svg for histogram.
         var hGsvg = d3.select(id).append("svg")
             .attr("width", hGDim.w + hGDim.l + hGDim.r)
             .attr("height", hGDim.h + hGDim.t + hGDim.b).append("g")
             .attr("transform", "translate(" + hGDim.l + "," + hGDim.t + ")");
             histogramdata = true;
-        // create function for x-axis mapping.
+        // function for x-axis mapping.
         var x = d3.scale.ordinal().rangeRoundBands([0, hGDim.w], 0.1)
             .domain(fD.map(function (d) { return d[0]; }));
 
-        // Add x-axis to the histogram svg.
+        // x-axis to the histogram svg.
         hGsvg.append("g").attr("class", "x axis")
             .attr("transform", "translate(0," + hGDim.h + ")")
             .call(d3.svg.axis().scale(x).orient("bottom"))
             .selectAll(".tick text")
             .call(wrap, x.rangeBand());
 
+            // to wrap the text of the name of the dishes so as to present nicely
             function wrap(text, width) {
             text.each(function() {
                 var text = d3.select(this),
@@ -154,26 +149,26 @@ function dashboard(id, fData) {
             });
             }
 
-        // Create function for y-axis map.
+        //  function for y-axis map.
         var y = d3.scale.linear().range([hGDim.h, 0])
             .domain([0, d3.max(fD, function (d) { return d[1]; })]);
 
-        // Create bars for histogram to contain rectangles and freq labels.
+        // bars for histogram to contain rectangles and freq labels.
         var bars = hGsvg.selectAll(".bar").data(fD).enter()
             .append("g").attr("class", "bar");
 
-        //create the rectangles.
+        // the rectangles.
         bars.append("rect")
             .attr("x", function (d) { return x(d[0]); })
             .attr("y", function (d) { return y(d[1]); })
             .attr("width", x.rangeBand())
             .attr("height", function (d) { return hGDim.h - y(d[1]); })
             .attr('fill', barColor)
-            .on("mouseover", mouseover)// mouseover is defined below.
-            .on("mouseout", mouseout);// mouseout is defined below.
+            .on("mouseover", mouseover)// mouseover will be defined below.
+            .on("mouseout", mouseout);// mouseout will be defined below.
 
         
-        //Create the frequency labels above the rectangles.
+        // the frequency labels above the rectangles.
         bars.append("text").text(function (d) { 
             var datum = (d3.format(",")(d[1])).slice(0, 4);
            
@@ -187,23 +182,23 @@ function dashboard(id, fData) {
             var st = fData.filter(function (s) { return s.Name == d[0]; })[0],
                 nD = d3.keys(st.freq).map(function (s) { return { type: s, freq: st.freq[s] }; });
 
-            // call update functions of pie-chart and legend.    
+            // update functions of pie-chart and legend.    
             pC.update(nD);
             leg.update(nD);
         }
 
-        function mouseout(d) {    // utility function to be called on mouseout.
-            // reset the pie-chart and legend.    
+        function mouseout(d) {    //function to be called on mouseout.
+            //  to reset the pie-chart and legend.    
             pC.update(tF);
             leg.update(tF);
         }
 
-        // create function to update the bars. This will be used by pie-chart.
+        //  function to update the bars. This will be used by pie-chart.
         hG.update = function (nD, color) {
-            // update the domain of the y-axis map to reflect change in frequencies.
+            // to update the domain of the y-axis map to reflect change in frequencies.
             y.domain([0, d3.max(nD, function (d) { return d[1]; })]);
 
-            // Attach the new data to the bars.
+            // To Attach the new data to the bars.
             var bars = hGsvg.selectAll(".bar").data(nD);
 
             // transition the height and color of rectangles.
